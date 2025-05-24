@@ -1,5 +1,7 @@
 {
   "name": "홍길동",
   "userId": "gildong",
-  "password": "a123456789"
+  "password": "a123456789",
+  "studentNumber": "6000000",
+  "email": ""
 }

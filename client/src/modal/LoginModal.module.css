@@ -1,0 +1,73 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* 가장 위에 */
+}
+.container {
+  background-color: #fff;
+  padding: 24px 32px;
+  border-radius: 30px;
+  width: 380px;
+  height: 300px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.login-container {
+  display: flex;
+  flex-direction: column;
+  width: 330px;
+  margin: auto;
+  gap: 5px;
+  padding-top: 15px;
+}
+.login-container input{ 
+  width: 94%;
+  height: 33px;
+  border: 1px solid #3A3E98;
+  border-radius: 10px;
+  padding-left: 15px;
+}
+.login-container button {
+  width: 100%;
+  height: 36px;
+  border: 1px solid #3A3E98;
+  border-radius: 10px;
+  background-color: #3A3E98;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 18px;
+}
+.auto-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  font-size: 13px;
+  color: #8b8b8b;
+  white-space: nowrap;
+}
+.auto-container input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #3A3E98;  
+}
+.close-button {
+  display: flex;
+  justify-content: right;
+}
+.title{
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #3A3E98;
+  padding: 10px;
+}

@@ -1,0 +1,79 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* 가장 위에 */
+}
+.container {
+  background-color: #fff;
+  padding: 24px 32px;
+  border-radius: 30px;
+  width: 370px;
+  height: 620px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.join-container {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  margin: auto;
+  gap: 15px;
+  padding-top: 15px;
+  font-size: 14px;
+  color: #8587a1;
+}
+.join-container input{ 
+  width: 94%;
+  height: 25px;
+  border: 1px solid #3A3E98;
+  border-radius: 10px;
+  padding-left: 13px;
+  padding-top: 3px;
+  font-size: 12px;
+}
+
+.id-check {
+  height: 20px;
+  border: 1px solid #3e3f53;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #3A3E98;
+  font-weight: 600;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-left: 3px;
+  padding-top: 3px;
+}
+
+.close-button {
+  display: flex;
+  justify-content: right;
+}
+.title{
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #3A3E98;
+  padding: 10px;
+}
+.submit-button {
+  width: 100%;
+  height: 36px;
+  border: 1px solid #3A3E98;
+  border-radius: 10px;
+  background-color: #3A3E98;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 25px;
+}
+.disabled {
+  background-color: #999999;
+}

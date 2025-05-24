@@ -14,6 +14,7 @@ function Home() {
   const [toggle, setToggle] = useState("ALL"); //ALL, MY 토글 버튼
   const [sortValue, setSortValue] = useState("title"); // 드롭다운 value
 
+  //게시글 목록 불러오기 API
   // useEffect(() => {
   //   const getData = async () => {
   //     try{
@@ -60,7 +61,7 @@ function Home() {
         </div>
         <div className="card-container">
           {
-            sortedPosts.map((post) => ( //mock data-> sortedPosts.map, API -> posts
+            sortedPosts.map((post) => ( //mock data-> sortedPosts.map, API -> posts.map
               <Card key={post.id} post={post}/>
             ))
           }
