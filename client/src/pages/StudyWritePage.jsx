@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styles from "./StudyWritePage.module.css";
+import styles from "./StudyWriteEditPage.module.css";
+import loginUser from "../mock/loginUser.json";
 
-function StudyWritePage() {
+function StudyWritePage({ setIsOpen, onSubmit }) {
   const [form, setForm] = useState({
     title: "",
     content: "",
@@ -11,12 +11,11 @@ function StudyWritePage() {
     frequency: "",
     method: { offline: false, online: false },
     tags: [],
-    region: ""
+    region: "",
+    userId: loginUser.userId,
+    name: loginUser.name
   });
   const [tagInput, setTagInput] = useState("");
-  const [isOpen, setIsOpen] = useState(true);
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -40,19 +39,19 @@ function StudyWritePage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("studyDraft", JSON.stringify(form));
     console.log("작성된 데이터:", form);
-    alert("작성 완료되었습니다!");
+    if (onSubmit) {
+      onSubmit(form);
+    }
+    setIsOpen(false); // 작성 후 닫기
   };
-
-  if (!isOpen) return null;
 
   return (
     <div className={styles.overlay}>
-      <div className={styles.modal} style={{ position: "relative", padding: "40px" }}>
+      <div className={styles.modal}>
         <button
+          className={styles.closeButton}
           onClick={() => setIsOpen(false)}
-          style={{ position: "absolute", right: 10, top: 10, fontSize: 12, background: "none", border: "none", cursor: "pointer" }}
         >✕</button>
         <h2>작성하기</h2>
         <form onSubmit={handleSubmit}>
@@ -63,18 +62,18 @@ function StudyWritePage() {
             </div>
             <div className={styles.row}>
               <label>모집 인원</label>
-              <input type="number" name="maxPeople" min="0" value={form.maxPeople} onChange={handleChange} placeholder="최대 인원 수를 입력하세요" />
+              <input type="number" name="maxPeople" value={form.maxPeople} onChange={handleChange} placeholder="최대 인원 수를 입력하세요" min="0" />
             </div>
           </div>
 
           <div className={styles.rowGroup}>
             <div className={styles.row}>
               <label>상세 내용</label>
-              <textarea name="content" value={form.content} onChange={handleChange} required />
+              <textarea name="description" value={form.description} onChange={handleChange} required />
             </div>
             <div className={styles.row}>
               <label>주간 모임 횟수</label>
-              <input type="number" name="frequency" min="0" value={form.frequency} onChange={handleChange} placeholder="ex) 1" />
+              <input type="number" name="frequency" value={form.frequency} onChange={handleChange} placeholder="ex) 1" min="0" />
 
               <div className={styles.checkboxGroup}>
                 <label><input type="checkbox" name="offline" checked={form.method.offline} onChange={handleChange} /> 대면</label>
@@ -96,7 +95,7 @@ function StudyWritePage() {
               </div>
 
               <label>지역</label>
-              <input type="text" name="region" value={form.region} onChange={handleChange} placeholder="서울 강남구" />
+              <input type="text" name="location" value={form.location} onChange={handleChange} placeholder="서울 강남구" />
             </div>
           </div>
 

@@ -6,32 +6,33 @@ import postData from '../mock/postData.json';
 import loginUser from '../mock/loginUser.json';
 import Search from "../components/Search";
 import { fetchPosts } from "../api/postAPI";
-
+import StudyWritePage from "./StudyWritePage";
 
 function Home() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(postData);
   const [keyword, setKeyword] = useState(""); //검색어
   const [toggle, setToggle] = useState("ALL"); //ALL, MY 토글 버튼
   const [sortValue, setSortValue] = useState("title"); // 드롭다운 value
+  const [isWriteOpen, setIsWriteOpen] = useState(false);
 
   // useEffect(() => {
-  //   const getData = async () => {
-  //     try{
-  //       const response = await fetchPosts(toggle, sortValue, keyword);
-  //       setPosts(response.data);
-  //       console.log("데이터: ",response.data);
-  //     } catch(err){
-  //       console.log("fetching data error: ", err);
-  //     }
+  // const getData = async () => {
+  //   try {
+  //     const response = await fetchPosts(toggle, sortValue, keyword);
+  //     setPosts(response.data); // 서버에서 받아온 게시글 저장
+  //     console.log("데이터: ", response.data);
+  //   } catch(err) {
+  //     console.log("fetching data error: ", err);
   //   }
-  //   getData();
-  // }, [toggle, sortValue, keyword])
+  // };
+  // getData();
+// }, [toggle, sortValue, keyword]);
 
 
   // 게시물 토글 버튼, 검색창 필터 구현. 
-  const filteredPosts = postData
-  .filter(post => (toggle === "ALL") || (loginUser.userId === post.userId))
-  .filter(post => post.title.toLowerCase().includes(keyword.toLowerCase()));
+  const filteredPosts = posts
+    .filter(post => (toggle === "ALL") || (loginUser.userId === post.userId))
+    .filter(post => post.title.toLowerCase().includes(keyword.toLowerCase()));
 
   //정렬 기능 구현.
   const sortedPosts = [...filteredPosts].sort((a,b) => {
@@ -40,7 +41,7 @@ function Home() {
     } else if(sortValue === 'day'){
       return new Date(b.deadline) - new Date(a.deadline);
     }
-  })
+  });
 
   return (
     <>
@@ -56,7 +57,7 @@ function Home() {
             </select>
           </div>
           <Search keyword={keyword} setKeyword={setKeyword}/>
-          <button className="write-button">게시물 작성</button>
+          <button className="write-button" onClick={() => setIsWriteOpen(true)}>게시물 작성</button>
         </div>
         <div className="card-container">
           {
@@ -66,7 +67,14 @@ function Home() {
           }
         </div>
       </div>
+      {isWriteOpen && (
+        <StudyWritePage 
+          setIsOpen={setIsWriteOpen} 
+          onSubmit={(newPost) => setPosts(prev => [...prev, newPost])} 
+        />
+      )}
     </>
   )
 }
+
 export default Home;
