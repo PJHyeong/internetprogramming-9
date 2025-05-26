@@ -8,9 +8,9 @@ export const loginAPI = async (userId, password) => {
       { userId, password },
       { withCredentials: true }
     );
-    if (res.data && res.data.token && res.data.userId) {
+    if (res.data && res.data.token && res.data.user) {
       localStorage.setItem("accessToken", res.data.token);
-      localStorage.setItem("userId", res.data.userId);
+      localStorage.setItem("userId", res.data.user.id);
     } 
     return { success: true, user: res.data.user };
   } catch (err) {
@@ -22,12 +22,12 @@ export const loginAPI = async (userId, password) => {
 };
 
 //토큰 재발급 요청
-export const refreshTokenAPI = async () => {
+export const refreshTokenAPI = async (form) => {
   try {
     const res = await axiosInstance.post("/refresh", 
       {},
       {withCredentials: true}
-    ); //accessToken 만료시, 토큰 재발급 요청!
+    ); //accessToken 만료시, 토큰 재발급 요청
 
     if (res.data.token) {
       localStorage.setItem("accessToken", res.data.token);
@@ -42,7 +42,7 @@ export const refreshTokenAPI = async () => {
 //로그아웃 API
 export const logoutAPI = async () => {
   try {
-    await axiosInstance.post("/logout");
+    const res = await axiosInstance.post("/logout");
     return { 
       success: true 
     };
@@ -55,7 +55,7 @@ export const logoutAPI = async () => {
 //회원가입 API
 export const signUpAPI = async () => {
   try{
-    axiosInstance.post("", form);
+    await axiosInstance.post("", form);
 
     return {
       success: true,
@@ -72,7 +72,7 @@ export const signUpAPI = async () => {
 //아이디 중복 확인 API
 export const userIdAPI = async (userId) => {
   try{
-    axiosInstance.get("",{
+    const res = await axiosInstance.get("",{
       params: {userId},
     });
 

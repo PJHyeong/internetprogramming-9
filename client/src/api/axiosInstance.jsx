@@ -4,4 +4,13 @@ const axiosInstance = axios.create({
   baseURL:''
 });
 
+//accessToken 헤더 설정
+axiosInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem("accessToken");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 export default axiosInstance;

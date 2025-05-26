@@ -25,7 +25,7 @@ function LoginModal({onClose, onLogin}){
   return (
     <div className={login.overlay}>
       <div className={login.container}>
-        <div className={login["close-button"]} onClick={() => onClose(false)}>
+        <div className={login["close-button"]} onClick={() => onClose()}>
           <img src={close} alt="close"/>
         </div>
         <div className={login.title}>로그인</div>
