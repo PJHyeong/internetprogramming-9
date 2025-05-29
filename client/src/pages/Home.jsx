@@ -14,7 +14,7 @@ function Home() {
   const [toggle, setToggle] = useState("ALL"); //ALL, MY 토글 버튼
   const [sortValue, setSortValue] = useState("title"); // 드롭다운 value
 
-  //게시글 목록 불러오기 API
+  // //게시글 목록 불러오기 API
   // useEffect(() => {
   //   const getData = async () => {
   //     try{

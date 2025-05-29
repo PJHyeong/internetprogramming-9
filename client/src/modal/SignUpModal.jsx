@@ -17,15 +17,16 @@ function SignUpModal({onClose}){
 });
   const { userId, password, email, name, studentNumber } = form;
 
-  //아이디 중복 확인
-  const handleIdCheck = async () => {
-    const result = await userIdAPI(userId);
+  // //아이디 중복 확인
+  // const handleIdCheck = async () => {
+  //   const result = await userIdAPI(userId);
 
-    setCheckColor(result.success ? "green" : "red");
-    setCheckMessage(result.message);
-    setIdChecked(result.success);
+  //   setCheckColor(result.success ? "green" : "red");
+  //   setCheckMessage(result.message);
+  //   setIdChecked(result.success);
 
-    }
+  //   }
+  //onClick={handleIdCheck}
 
   //회원가입 제출
   const handleSubmit = async () => {
@@ -36,6 +37,7 @@ function SignUpModal({onClose}){
       onClose();
     }else{
       alert(result.error);
+      console.log(result.error);
       //에러 메세지 출력
     }
   }
@@ -54,8 +56,8 @@ function SignUpModal({onClose}){
   name.trim() &&
   studentNumber.trim() &&
   (password === rePassword) &&
-  (password.length >= 8) &&
-  idChecked ;
+  (password.length >= 8) ;
+  //&&idChecked ;
 
   const getPasswordMessage = (password) => {
     if(!password){
@@ -81,7 +83,7 @@ function SignUpModal({onClose}){
               name="userId"
               value={userId}
               onChange={handleFormChange}/>
-            <button className={join["id-check"]} onClick={handleIdCheck}>중복 확인</button>
+            <button className={join["id-check"]}>중복 확인</button>
             {checkMessage &&
               <span style={{ paddingLeft: "3px", color: checkColor, fontSize: "10px" }}>{checkMessage}</span> }
           </span>

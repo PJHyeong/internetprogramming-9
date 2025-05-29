@@ -15,7 +15,7 @@ function LoginModal({onClose, onLogin}){
       if(autoLogin) localStorage.setItem("autoLogin", "true");
       else localStorage.removeItem("autoLogin");
       alert("로그인 되었습니다.");
-      onLogin(true);
+      onLogin(login.user);
       onClose();
     }else {
       alert("로그인에 실패 하였습니다. 다시 한 번 확인해 주세요.");

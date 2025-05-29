@@ -4,7 +4,7 @@ import axiosInstance from "./axiosInstance";
 export const loginAPI = async (userId, password) => {
   try {
     const res = await axiosInstance.post(
-      "/login",
+      "/api/login",
       { userId, password },
       { withCredentials: true }
     );
@@ -24,7 +24,7 @@ export const loginAPI = async (userId, password) => {
 //토큰 재발급 요청
 export const refreshTokenAPI = async (form) => {
   try {
-    const res = await axiosInstance.post("/refresh", 
+    const res = await axiosInstance.post("/api/refresh", 
       {},
       {withCredentials: true}
     ); //accessToken 만료시, 토큰 재발급 요청
@@ -42,7 +42,7 @@ export const refreshTokenAPI = async (form) => {
 //로그아웃 API
 export const logoutAPI = async () => {
   try {
-    const res = await axiosInstance.post("/logout");
+    const res = await axiosInstance.post("/api/logout");
     return { 
       success: true 
     };
@@ -53,9 +53,9 @@ export const logoutAPI = async () => {
 };
 
 //회원가입 API
-export const signUpAPI = async () => {
+export const signUpAPI = async (form) => {
   try{
-    await axiosInstance.post("", form);
+    const res = await axiosInstance.post("/api/register", form);
 
     return {
       success: true,
@@ -72,7 +72,7 @@ export const signUpAPI = async () => {
 //아이디 중복 확인 API
 export const userIdAPI = async (userId) => {
   try{
-    const res = await axiosInstance.get("",{
+    const res = await axiosInstance.get("/api/~~",{
       params: {userId},
     });
 
