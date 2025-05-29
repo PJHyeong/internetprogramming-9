@@ -1,7 +1,4 @@
-/**
- * tag 객체를 받아서 뱃지용 CSS 클래스명 등을 리턴
- * front 에서 badge 컴포넌트에 className 으로 넘겨주면 됩니다.
- */
+
 const badgeMap = {
   region: {            // 모집지역
     서울:    'badge-region-seoul',
