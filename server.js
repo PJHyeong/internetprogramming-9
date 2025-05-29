@@ -1,27 +1,17 @@
-
-
-const express = require('express');
+require('dotenv').config();
+const express    = require('express');
 const bodyParser = require('body-parser');
-const db = require('./config/db'); // 데이터베이스 연결 및 모델
-const studyRoutes = require('./routes/study'); // 모집글 라우트
-const tagRoutes = require('./routes/tag'); // 태그 라우트
-const badgeRoutes = require('./routes/badge'); // 뱃지 라우트
+const postsRoute = require('./routes/posts');
+const tagsRoute  = require('./routes/tags');
 
 const app = express();
 app.use(bodyParser.json());
 
-// API 라우트 설정
-app.use('/api/study', studyRoutes);
-app.use('/api/tags', tagRoutes);
-app.use('/api/badges', badgeRoutes);
+// 라우트 설정
+app.use('/posts', postsRoute);
+app.use('/tags',  tagsRoute);
 
-// 데이터베이스 동기화
-db.sequelize.sync()
-    .then(() => console.log('Database synced'))
-    .catch(err => console.error('Error syncing database:', err));
+app.get('/', (req,res)=>res.send('Study Matching API OK'));
 
-// 서버 시작
-const PORT = process.env.PORT || 5432;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, ()=>console.log(`✅ 서버가 ${PORT}포트에서 열렸습니다.`));
