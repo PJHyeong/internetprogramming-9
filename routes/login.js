@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const router = express.Router();
 
-//Access Token 생성
+// Access Token 생성
 function generateAccessToken(user) {
   return jwt.sign(
     { id: user.id, role: user.role },
@@ -15,7 +15,7 @@ function generateAccessToken(user) {
   );
 }
 
-//Refresh Token 생성
+// Refresh Token 생성
 function generateRefreshToken(user) {
   return jwt.sign(
     { id: user.id },
@@ -24,21 +24,30 @@ function generateRefreshToken(user) {
   );
 }
 
-//회원가입
+// 회원가입
 router.post('/register', async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, userId, password, studentNumber, email } = req.body;
 
   try {
+    // 이메일 중복 확인
     const check = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
     if (check.rows.length > 0) {
       return res.status(400).json({ message: '이미 등록된 이메일입니다.' });
     }
 
+    // userId 중복 확인
+    const userIdCheck = await pool.query('SELECT * FROM users WHERE userId = $1', [userId]);
+    if (userIdCheck.rows.length > 0) {
+      return res.status(400).json({ message: '이미 등록된 사용자 ID입니다.' });
+    }
+
+    // 비밀번호 해싱
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // 회원가입 처리
     const result = await pool.query(
-      'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email, role',
-      [name, email, hashedPassword]
+      'INSERT INTO users (name, userId, password, studentNumber, email) VALUES ($1, $2, $3, $4, $5) RETURNING id, name, userId, email, role',
+      [name, userId, hashedPassword, studentNumber, email]
     );
 
     res.status(201).json({ user: result.rows[0] });
@@ -48,21 +57,21 @@ router.post('/register', async (req, res) => {
   }
 });
 
-//로그인 + Refresh Token 쿠키 저장
+// 로그인 + Refresh Token 쿠키 저장
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { userId, password } = req.body;
 
   try {
-    const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    const result = await pool.query('SELECT * FROM users WHERE userId = $1', [userId]);
     const user = result.rows[0];
 
     if (!user) {
-      return res.status(401).json({ message: '이메일 또는 비밀번호가 잘못되었습니다.' });
+      return res.status(401).json({ message: '사용자 ID 또는 비밀번호가 잘못되었습니다.' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(401).json({ message: '이메일 또는 비밀번호가 잘못되었습니다.' });
+      return res.status(401).json({ message: '사용자 ID 또는 비밀번호가 잘못되었습니다.' });
     }
 
     const accessToken = generateAccessToken(user);
@@ -79,6 +88,7 @@ router.post('/login', async (req, res) => {
       user: {
         id: user.id,
         name: user.name,
+        userId: user.userId,
         email: user.email,
         role: user.role,
       },
@@ -89,7 +99,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-//토큰 재발급
+// 토큰 재발급
 router.post('/refresh', (req, res) => {
   const refreshToken = req.cookies.refreshToken;
 
@@ -105,7 +115,7 @@ router.post('/refresh', (req, res) => {
   }
 });
 
-//Refresh Token 제거
+// Refresh Token 제거
 router.post('/logout', (req, res) => {
   res.clearCookie('refreshToken', {
     httpOnly: true,
