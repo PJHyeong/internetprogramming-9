@@ -1,4 +1,4 @@
-const pool = require('../db');
+const pool = require('../config/db');
 
 // 모든 태그 조회
 exports.getAllTags = async (req, res) => {
