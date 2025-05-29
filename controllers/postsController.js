@@ -1,4 +1,4 @@
-const pool        = require('../db');
+const pool        = require('../config/db');
 const { withBadge } = require('../utils/badgeUtils');
 
 // Helper: post_tags 삽입
