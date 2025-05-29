@@ -36,7 +36,7 @@ router.post('/register', async (req, res) => {
     }
 
     // userId 중복 확인
-    const userIdCheck = await pool.query('SELECT * FROM users WHERE userId = $1', [userId]);
+    const userIdCheck = await pool.query('SELECT * FROM users WHERE "userId" = $1', [userId]);
     if (userIdCheck.rows.length > 0) {
       return res.status(400).json({ message: '이미 등록된 사용자 ID입니다.' });
     }
@@ -45,10 +45,13 @@ router.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // 회원가입 처리
+    const role = 'user';
+
     const result = await pool.query(
-      'INSERT INTO users (name, userId, password, studentNumber, email) VALUES ($1, $2, $3, $4, $5) RETURNING id, name, userId, email, role',
-      [name, userId, hashedPassword, studentNumber, email]
+      'INSERT INTO users (name, "userId", password, "studentNumber", email, role) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, name, "userId", email, role',
+      [name, userId, hashedPassword, studentNumber, email, role]
     );
+
 
     res.status(201).json({ user: result.rows[0] });
   } catch (err) {
@@ -62,7 +65,7 @@ router.post('/login', async (req, res) => {
   const { userId, password } = req.body;
 
   try {
-    const result = await pool.query('SELECT * FROM users WHERE userId = $1', [userId]);
+    const result = await pool.query('SELECT * FROM users WHERE "userId" = $1', [userId]);
     const user = result.rows[0];
 
     if (!user) {
