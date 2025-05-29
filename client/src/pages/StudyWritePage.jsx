@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import styles from "./StudyWriteEditPage.module.css";
 import loginUser from "../mock/loginUser.json";
+import axiosInstance from "../api/axiosInstance"; // axios 인스턴스 불러오기
 
-function StudyWritePage({ setIsOpen, onSubmit }) {
+function StudyWritePage({ setIsOpen }) {
   const [form, setForm] = useState({
     title: "",
     content: "",
+    description: "",
     deadline: "",
     maxPeople: "",
     frequency: "",
     method: { offline: false, online: false },
     tags: [],
-    region: "",
+    location: "",
     userId: loginUser.userId,
     name: loginUser.name
   });
@@ -37,13 +39,18 @@ function StudyWritePage({ setIsOpen, onSubmit }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("작성된 데이터:", form);
-    if (onSubmit) {
-      onSubmit(form);
+
+    try {
+      const response = await axiosInstance.post("/api/posts", form);
+      alert("작성 완료되었습니다!");
+      console.log("서버 응답:", response.data);
+      setIsOpen(false); // 작성 후 닫기
+    } catch (error) {
+      console.error("작성 실패:", error);
+      alert("작성 중 오류가 발생했습니다.");
     }
-    setIsOpen(false); // 작성 후 닫기
   };
 
   return (

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./StudyWriteEditPage.module.css";
+import axiosInstance from "../api/axiosInstance";
 
 function StudyEditPage({ post, setIsOpen }) {
   const [form, setForm] = useState({
@@ -41,11 +42,17 @@ function StudyEditPage({ post, setIsOpen }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("수정된 데이터:", form);
-    alert("수정 완료되었습니다!");
-    setIsOpen(false); // 수정 완료 후 창 닫기
+    try {
+      const response = await axiosInstance.put(`/api/posts/${post.id}`, form);
+      alert("수정 완료되었습니다!");
+      console.log("서버 응답:", response.data);
+      setIsOpen(false);
+    } catch (error) {
+      console.error("수정 중 오류 발생:", error);
+      alert("수정 실패: 서버에 요청할 수 없습니다.");
+    }
   };
 
   return (

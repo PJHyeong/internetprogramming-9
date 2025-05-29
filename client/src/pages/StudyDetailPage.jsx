@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import postData from "../mock/postData.json";
+import { fetchPostById } from "../api/posts";
 import styles from "./StudyDetailPage.module.css";
 import Header from "../components/Header";
 
 function StudyDetailPage() {
   const { id } = useParams();
-  const post = postData.find((p) => String(p.id) === id);
+  const [post, setPost] = useState(null);
 
-  if (!post) return <div>게시물을 찾을 수 없습니다.</div>;
+  useEffect(() => {
+    fetchPostById(id)
+      .then(setPost)
+      .catch(console.error);
+  }, [id]);
+
+  if (!post) return <div>불러오는 중...</div>;
 
   // D-day 기준 모집 상태 판별
   const calculateDday = (deadline) => {
