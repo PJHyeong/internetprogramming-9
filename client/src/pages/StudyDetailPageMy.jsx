@@ -5,26 +5,33 @@ import Header from "../components/Header";
 import StudyEditPage from "./StudyEditPage";
 import ApplicantListModal from "./ApplicantListModal";
 import { fetchPostById } from "../api/posts"; // axios 요청 함수 불러오기
+import postData from "../mock/postData.json";
 
 function StudyDetailPageMy() {
   const { id } = useParams();
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState([]);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    const loadPost = async () => {
-      try {
-        const data = await fetchPostById(id);
-        setPost(data);
-      } catch (error) {
-        console.error("게시글 불러오기 실패:", error);
-      }
-    };
-    loadPost();
-  }, [id]);
+  //API
+  // useEffect(() => {
+  //   const loadPost = async () => {
+  //     try {
+  //       const data = await fetchPostById(id);
+  //       setPost(data);
+  //     } catch (error) {
+  //       console.error("게시글 불러오기 실패:", error);
+  //     }
+  //   };
+  //   loadPost();
+  // }, [id]);
 
-  if (!post) return <div>게시물을 찾을 수 없습니다.</div>;
+  // if (!post) return <div>게시물을 찾을 수 없습니다.</div>;
+
+  useEffect(() => {
+    const findPost = postData.find(post => post.id === Number(id));
+    setPost(findPost);
+  }, []);
 
   const calculateDday = (deadline) => {
     const today = new Date();
@@ -53,7 +60,7 @@ function StudyDetailPageMy() {
 
         <div className={styles.writer}>
           {post.name}{" "}
-          <span className={styles.tags}>{post.tags.map((tag) => `#${tag} `)}</span>
+          <span className={styles.tags}>{post.tags?.map((tag) => `#${tag} `)}</span>
         </div>
 
         <div className={styles.content}>{post.content}</div>

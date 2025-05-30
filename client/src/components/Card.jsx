@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import detail from '../assets/detail_polygon.svg';
 import style from './Card.module.css';
 
-function Card({post}) {
+function Card({post, onClick}) {
 
   //디데이 계산
   const calculateDays = ({post}) => {
@@ -16,7 +16,7 @@ function Card({post}) {
 
 
   return(
-    <div className={style.container}>
+    <div className={style.container} onClick={onClick}>
       <div className={style['top-container']}>
         <div className={style.day}>{(day >= 0) ? `D-${day}` : "D-0"}</div>
         <div className={style.badge}>

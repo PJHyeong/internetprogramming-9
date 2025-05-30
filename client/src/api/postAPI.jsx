@@ -11,19 +11,6 @@ export const fetchPosts = async (toggle, sortValue, keyword) => {
   });
   return response.data;
 };
-import axiosInstance from "./axiosInstance";
-
-//1. 전체 모집글 리스트 불러오기
-export const fetchPosts = async (toggle, sortValue, keyword) => {
-  const response = await axiosInstance.get("/posts", {
-    params: {
-      user: toggle,
-      sort: sortValue,
-      keyword: keyword,
-    },
-  });
-  return response.data;
-};
 
 //2. 특정 ID의 모집글 상세 보기
 export const fetchPostById = async (id) => {

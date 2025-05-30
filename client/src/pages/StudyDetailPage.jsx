@@ -3,18 +3,25 @@ import { useParams } from "react-router-dom";
 import { fetchPostById } from "../api/posts";
 import styles from "./StudyDetailPage.module.css";
 import Header from "../components/Header";
+import postData from "../mock/postData.json";
 
 function StudyDetailPage() {
   const { id } = useParams();
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState([]);
+
+  //API
+  // useEffect(() => {
+  //   fetchPostById(id)
+  //     .then(setPost)
+  //     .catch(console.error);
+  // }, [id]);
+
+  // if (!post) return <div>불러오는 중...</div>;
 
   useEffect(() => {
-    fetchPostById(id)
-      .then(setPost)
-      .catch(console.error);
-  }, [id]);
-
-  if (!post) return <div>불러오는 중...</div>;
+    const findPost = postData.find(post => post.id === Number(id));
+    setPost(findPost);
+  }, []);
 
   // D-day 기준 모집 상태 판별
   const calculateDday = (deadline) => {
@@ -40,7 +47,7 @@ function StudyDetailPage() {
         <div className={styles.writer}>
           {post.name}{" "}
           <span className={styles.tags}>
-            {post.tags.map((tag) => `#${tag} `)}
+            {post.tags?.map((tag) => `#${tag} `)}
           </span>
         </div>
 

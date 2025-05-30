@@ -6,6 +6,7 @@ import postData from '../mock/postData.json';
 import loginUser from '../mock/loginUser.json';
 import Search from "../components/Search";
 import { fetchPosts } from "../api/postAPI";
+import { useNavigate } from "react-router-dom";
 
 
 function Home() {
@@ -13,6 +14,8 @@ function Home() {
   const [keyword, setKeyword] = useState(""); //검색어
   const [toggle, setToggle] = useState("ALL"); //ALL, MY 토글 버튼
   const [sortValue, setSortValue] = useState("title"); // 드롭다운 value
+
+  const navigate = useNavigate();
 
   // //게시글 목록 불러오기 API
   // useEffect(() => {
@@ -62,7 +65,7 @@ function Home() {
         <div className="card-container">
           {
             sortedPosts.map((post) => ( //mock data-> sortedPosts.map, API -> posts.map
-              <Card key={post.id} post={post}/>
+              <Card key={post.id} post={post} onClick={()=>{toggle === "ALL" ? navigate(`/post/${post.id}`) : navigate(`/post/${post.id}/my`)}}/>
             ))
           }
         </div>

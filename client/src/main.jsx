@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { refreshTokenAPI } from "./api/loginAPI";
 import { useEffect } from "react";
 import Home from "./pages/Home";
+import StudyDetailPage from "./pages/StudyDetailPage";
+import StudyDetailPageMy from "./pages/StudyDetailPageMy";
 
 function Main() {
 
@@ -23,7 +25,8 @@ function Main() {
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home />}/>
-      <Route />
+      <Route path="/post/:id" element={<StudyDetailPage />}/>
+      <Route path="/post/:id/my" element={<StudyDetailPageMy />}/>
     </Routes>
     </BrowserRouter>
   )
