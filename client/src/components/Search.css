@@ -9,11 +9,7 @@
   box-sizing: border-box;
   transform: translateX(-70px);
 }
-@media (max-width: 800px) {
-  .search-box {
-    transform: translateX(-20px);
-  }
-}
+
 .search-box input {
   background-color: transparent;
   border: none;
