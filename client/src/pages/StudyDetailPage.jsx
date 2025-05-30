@@ -10,6 +10,15 @@ function StudyDetailPage() {
   const [post, setPost] = useState([]);
   const navigate = useNavigate();
 
+  //API
+  // useEffect(() => {
+  //   fetchPostById(id)
+  //     .then(setPost)
+  //     .catch(console.error);
+  // }, [id]);
+
+  // if (!post) return <div>불러오는 중...</div>;
+
   useEffect(() => {
     const findPost = postData.find((post) => post.id === Number(id));
     setPost(findPost);
@@ -31,22 +40,17 @@ function StudyDetailPage() {
         <div className={styles.status}>
           {isRecruiting ? "모집중" : "모집 마감"}
         </div>
-
         <h2 className={styles.title}>{post.title}</h2>
-
         <div className={styles.divider}></div>
-
         <div className={styles.writer}>
-          {post.name}{" "}
+          {post.name}{"  "}
+        </div>
           <span className={styles.tags}>
             {post.tags?.map((tag) => `#${tag} `)}
           </span>
-        </div>
 
-        <div className={styles.content}>{post.content}</div>
-
-        {post.description && (
-          <div className={styles.content}>{post.description}</div>
+        {post.content && (
+          <div className={styles.content}>{post.content}</div>
         )}
 
         <div className={styles.divider}></div>

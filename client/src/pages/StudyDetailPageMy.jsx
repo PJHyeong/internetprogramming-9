@@ -14,6 +14,21 @@ function StudyDetailPageMy() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
+  //API
+  // useEffect(() => {
+  //   const loadPost = async () => {
+  //     try {
+  //       const data = await fetchPostById(id);
+  //       setPost(data);
+  //     } catch (error) {
+  //       console.error("게시글 불러오기 실패:", error);
+  //     }
+  //   };
+  //   loadPost();
+  // }, [id]);
+
+  // if (!post) return <div>게시물을 찾을 수 없습니다.</div>;
+
   useEffect(() => {
     const findPost = postData.find(post => post.id === Number(id));
     setPost(findPost);

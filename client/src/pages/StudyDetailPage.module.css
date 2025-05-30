@@ -57,10 +57,11 @@
   justify-content: center;
 }
 
-.name {
+.writer {
   font-size: 20px;
   font-weight: bold;
   color: #3a3e98;
+  margin-right: 15px;
 }
 
 .tags {
@@ -103,14 +104,15 @@
 .label {
   background-color: #3a3e98;
   color: white;
-  padding: 4px 12px;
+  padding-top: 3px;
   border-radius: 20px;
   font-size: 12px;
+  font-weight: bold;
   display: flex; 
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 28px;
+  width: 90px;
+  height: 30px;
   white-space: nowrap;
   flex-shrink: 0;   
 }
@@ -119,12 +121,14 @@
   flex: 1;
   min-width: 0;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: bold;
   color: #222;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 0;
+  padding-top: 3px;
+  padding-left: 3px;
 }
 
 
@@ -135,14 +139,17 @@
 }
 
 .button {
-  background-color: #2e2eaa;
+  background-color: #3A3E98;
   color: white;
   border: none;
   padding: 10px 20px;
+  padding-top: 12px;
   font-size: 14px;
-  border-radius: 8px;
+  font-weight: bold;
+  border-radius: 30px;
   cursor: pointer;
   transition: background-color 0.2s;
+  
 }
 
 .button:hover {
