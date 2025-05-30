@@ -77,7 +77,7 @@ function SignUpModal({onClose}){
         </div>
         <div className={join.title}>회원가입</div>
         <div className={join["join-container"]}>
-          <span>
+          <div>
             아이디
             <input type="text"
               name="userId"
@@ -86,8 +86,8 @@ function SignUpModal({onClose}){
             <button className={join["id-check"]}>중복 확인</button>
             {checkMessage &&
               <span style={{ paddingLeft: "3px", color: checkColor, fontSize: "10px" }}>{checkMessage}</span> }
-          </span>
-          <span>
+          </div>
+          <div>
             비밀번호
             <input type="password"
               name="password"
@@ -97,8 +97,8 @@ function SignUpModal({onClose}){
               <span style={{ paddingLeft: "3px", color: "red", fontSize: "10px" }}>
                 {getPasswordMessage(password)}
               </span>}
-          </span>
-          <span>
+          </div>
+          <div>
             비밀번호 확인
             <input type="password" 
               placeholder="비밀번호를 다시 입력해 주세요."
@@ -110,31 +110,31 @@ function SignUpModal({onClose}){
               password !== rePassword ? 
               (<span style={{ paddingLeft: "3px", color: "red", fontSize: "10px" }}>비밀번호가 일치하지 않습니다.</span>) : 
               (<span style={{ paddingLeft: "3px", color: "green", fontSize: "10px" }}>비밀번호가 일치합니다.</span>))}
-          </span>
-          <span>
+          </div>
+          <div>
             이름
             <input type="text"
               name="name"
               placeholder="ex) 홍길동"
               value={name}
               onChange={handleFormChange}/>
-          </span>
-          <span>
+          </div>
+          <div>
             학번
             <input type="text" 
               name="studentNumber"
               placeholder="ex) 60xxxxx"
               value={studentNumber}
               onChange={handleFormChange}/>
-          </span>
-          <span>
+          </div>
+          <div>
             이메일
             <input type="email" 
               name="email"
               placeholder="이메일을 입력해 주세요."
               value={email}
               onChange={handleFormChange}/>
-          </span>
+          </div>
             <button 
               type="button" 
               className={`${join["submit-button"]} ${isFormValid ? "" : join["disabled"]}`}

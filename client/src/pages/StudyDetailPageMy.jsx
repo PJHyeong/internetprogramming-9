@@ -9,30 +9,30 @@ import postData from "../mock/postData.json";
 
 function StudyDetailPageMy() {
   const { id } = useParams();
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState(null);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   //API
-  // useEffect(() => {
-  //   const loadPost = async () => {
-  //     try {
-  //       const data = await fetchPostById(id);
-  //       setPost(data);
-  //     } catch (error) {
-  //       console.error("게시글 불러오기 실패:", error);
-  //     }
-  //   };
-  //   loadPost();
-  // }, [id]);
-
-  // if (!post) return <div>게시물을 찾을 수 없습니다.</div>;
-
   useEffect(() => {
-    const findPost = postData.find(post => post.id === Number(id));
-    setPost(findPost);
-  }, []);
+    const loadPost = async () => {
+      try {
+        const data = await fetchPostById(id);
+        setPost(data);
+      } catch (error) {
+        console.error("게시글 불러오기 실패:", error);
+      }
+    };
+    loadPost();
+  }, [id]);
+
+  if (!post) return <div>게시물을 찾을 수 없습니다.</div>;
+
+  // useEffect(() => {
+  //   const findPost = postData.find(post => post.id === Number(id));
+  //   setPost(findPost);
+  // }, []);
 
   const calculateDday = (deadline) => {
     const today = new Date();
@@ -70,7 +70,6 @@ function StudyDetailPageMy() {
 
         <div className={styles.divider}></div>
 
-        {/* ✅ 수정된 info 블록 */}
         <div className={styles.infoBox}>
           <div className={styles.infoItem}>
             <div className={styles.label}>모집 인원</div>

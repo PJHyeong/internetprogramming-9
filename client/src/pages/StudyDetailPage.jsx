@@ -7,22 +7,22 @@ import postData from "../mock/postData.json";
 
 function StudyDetailPage() {
   const { id } = useParams();
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState(null);
   const navigate = useNavigate();
 
   //API
-  // useEffect(() => {
-  //   fetchPostById(id)
-  //     .then(setPost)
-  //     .catch(console.error);
-  // }, [id]);
-
-  // if (!post) return <div>불러오는 중...</div>;
-
   useEffect(() => {
-    const findPost = postData.find((post) => post.id === Number(id));
-    setPost(findPost);
-  }, []);
+    fetchPostById(id)
+      .then(setPost)
+      .catch(console.error);
+  }, [id]);
+
+  if (!post) return <div>불러오는 중...</div>;
+
+  // useEffect(() => {
+  //   const findPost = postData.find((post) => post.id === Number(id));
+  //   setPost(findPost);
+  // }, []);
 
   const calculateDday = (deadline) => {
     const today = new Date();
@@ -55,7 +55,6 @@ function StudyDetailPage() {
 
         <div className={styles.divider}></div>
 
-        {/* 구조 동일화: infoBox 사용 */}
         <div className={styles.infoBox}>
           <div className={styles.infoItem}>
             <div className={styles.label}>모집 인원</div>
