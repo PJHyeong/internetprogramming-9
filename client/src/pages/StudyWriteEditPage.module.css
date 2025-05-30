@@ -1,0 +1,120 @@
+/*  StudyWriteEditPage.module.css - 작성/수정 모달 공통 스타일 */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  width: 700px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+h2 {
+  text-align: center;
+  color: #2e2eaa;
+  font-size: 20px;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.rowGroup {
+  display: flex;
+  gap: 20px;
+}
+
+.rowGroup .row {
+  flex: 1;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+textarea {
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  font-size: 14px;
+  resize: none;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+.checkboxGroup {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.submit {
+  background-color: #2e2eaa;
+  color: white;
+  font-size: 16px;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: #1f1f8c;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.tag {
+  background-color: #dce2ff;
+  color: #2e2eaa;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 1.5px solid #2e2eaa;
+  background-color: #f7f9ff;
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: #2e2eaa;
+}
