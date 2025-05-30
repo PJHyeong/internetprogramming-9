@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import styles from "./StudyWritePage.module.css";
+import styles from "./StudyWriteEditPage.module.css";
+import axiosInstance from "../api/axiosInstance";
 
-function StudyEditPage() {
+function StudyEditPage({ post, setIsOpen }) {
   const [form, setForm] = useState({
     title: "",
     content: "",
@@ -10,21 +11,19 @@ function StudyEditPage() {
     frequency: "",
     method: { offline: false, online: false },
     tags: [],
-    region: ""
+    region: "",
+    description: ""
   });
   const [tagInput, setTagInput] = useState("");
-  const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
-    const saved = localStorage.getItem("studyDraft");
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      setForm(parsed);
+    if (post) {
+      setForm(post); // post prop을 받아서 초기값으로 세팅
     }
-  }, []);
+  }, [post]);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, checked } = e.target;
     if (name === "offline" || name === "online") {
       setForm({
         ...form,
@@ -43,20 +42,25 @@ function StudyEditPage() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("수정된 데이터:", form);
-    alert("수정 완료되었습니다!");
+    try {
+      const response = await axiosInstance.put(`/api/posts/${post.id}`, form);
+      alert("수정 완료되었습니다!");
+      console.log("서버 응답:", response.data);
+      setIsOpen(false);
+    } catch (error) {
+      console.error("수정 중 오류 발생:", error);
+      alert("수정 실패: 서버에 요청할 수 없습니다.");
+    }
   };
-
-  if (!isOpen) return null;
 
   return (
     <div className={styles.overlay}>
-      <div className={styles.modal} style={{ position: "relative", padding: "40px" }}>
+      <div className={styles.modal}>
         <button
           onClick={() => setIsOpen(false)}
-          style={{ position: "absolute", right: 10, top: 10, fontSize: 12, background: "none", border: "none", cursor: "pointer" }}
+          className={styles.closeButton}
         >✕</button>
         <h2>수정하기</h2>
         <form onSubmit={handleSubmit}>
@@ -74,7 +78,7 @@ function StudyEditPage() {
           <div className={styles.rowGroup}>
             <div className={styles.row}>
               <label>상세 내용</label>
-              <textarea name="content" value={form.content} onChange={handleChange} required />
+              <textarea name="description" value={form.description || ""} onChange={handleChange} required />
             </div>
             <div className={styles.row}>
               <label>주간 모임 횟수</label>

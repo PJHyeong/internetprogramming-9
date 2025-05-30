@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "React 스터디 모집",
+    "name": "홍길동",
+    "userId": "gildong",
+    "description": "React Hooks와 Context API 학습 예정",
+    "deadline": "2025-05-30",
+    "location": "경기도 용인시",
+    "tags": ["React", "Frontend"]
+  },
+  {
+    "id": 2,
+    "title": "가나다라마바사",
+    "name": "홍길동",
+    "userId": "gildong",
+    "description": "추천 시스템 개발",
+    "deadline": "2025-06-05",
+    "location": "경기도 오산시",
+    "tags": ["NLP", "AI"]
+  },
+  {
+    "id": 3,
+    "title": "나다라마바사",
+    "name": "김민지",
+    "userId": "minji",
+    "description": "React Hooks와 Context API 학습 예정",
+    "deadline": "2025-04-20",
+    "location": "경기도 용인시",
+    "tags": ["React", "Frontend"]
+  },
+  {
+    "id": 4,
+    "title": "AI 팀원 모집",
+    "name": "김민지",
+    "userId": "minji",
+    "description": "추천 시스템 개발",
+    "deadline": "2025-06-03",
+    "location": "경기도 용인시",
+    "tags": ["NLP", "AI"]
+  },
+  {
+    "id": 5,
+    "title": "AI 팀원 모집",
+    "name": "김민지",
+    "userId": "minji",
+    "description": "추천 시스템 개발",
+    "deadline": "2025-06-01",
+    "location": "경기도 용인시",
+    "tags": ["NLP", "AI"]
+  },
+  {
+    "id": 6,
+    "title": "AI 팀원 모집",
+    "name": "김민지",
+    "userId": "minji",
+    "description": "추천 시스템 개발",
+    "deadline": "2025-06-10",
+    "location": "경기도 용인시",
+    "tags": ["NLP", "AI"]
+  }
+]

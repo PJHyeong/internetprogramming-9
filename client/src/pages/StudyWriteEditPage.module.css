@@ -1,4 +1,4 @@
-/*  StudyWritePage.module.css - 작성/수정 모달 공통 스타일 */
+/*  StudyWriteEditPage.module.css - 작성/수정 모달 공통 스타일 */
 
 .overlay {
   position: fixed;
@@ -22,6 +22,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: relative;
 }
 
 h2 {
@@ -102,3 +103,18 @@ textarea:focus {
   background-color: #f7f9ff;
 }
 
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: #2e2eaa;
+}
