@@ -10,21 +10,11 @@ function StudyDetailPage() {
   const [post, setPost] = useState([]);
   const navigate = useNavigate();
 
-  //API
-  // useEffect(() => {
-  //   fetchPostById(id)
-  //     .then(setPost)
-  //     .catch(console.error);
-  // }, [id]);
-
-  // if (!post) return <div>불러오는 중...</div>;
-
   useEffect(() => {
-    const findPost = postData.find(post => post.id === Number(id));
+    const findPost = postData.find((post) => post.id === Number(id));
     setPost(findPost);
   }, []);
 
-  // D-day 기준 모집 상태 판별
   const calculateDday = (deadline) => {
     const today = new Date();
     const dday = new Date(deadline);
@@ -36,13 +26,14 @@ function StudyDetailPage() {
 
   return (
     <>
-      <Header onClick={() => {navigate('/')}}/>
+      <Header onClick={() => navigate("/")} />
       <div className={styles.container}>
         <div className={styles.status}>
           {isRecruiting ? "모집중" : "모집 마감"}
         </div>
 
         <h2 className={styles.title}>{post.title}</h2>
+
         <div className={styles.divider}></div>
 
         <div className={styles.writer}>
@@ -60,22 +51,23 @@ function StudyDetailPage() {
 
         <div className={styles.divider}></div>
 
-        <div className={styles.section}>
-          <div>
+        {/* 구조 동일화: infoBox 사용 */}
+        <div className={styles.infoBox}>
+          <div className={styles.infoItem}>
             <div className={styles.label}>모집 인원</div>
             <div className={styles.value}>최소 {post.maxPeople}명</div>
           </div>
-          <div>
+          <div className={styles.infoItem}>
             <div className={styles.label}>모집 기간</div>
             <div className={styles.value}>{post.deadline}</div>
           </div>
-          <div>
+          <div className={styles.infoItem}>
             <div className={styles.label}>진행 방식</div>
             <div className={styles.value}>
               {post.method} / 주 {post.frequency}회
             </div>
           </div>
-          <div>
+          <div className={styles.infoItem}>
             <div className={styles.label}>지역</div>
             <div className={styles.value}>{post.location}</div>
           </div>

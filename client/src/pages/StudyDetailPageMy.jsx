@@ -4,7 +4,7 @@ import styles from "./StudyDetailPage.module.css";
 import Header from "../components/Header";
 import StudyEditPage from "./StudyEditPage";
 import ApplicantListModal from "./ApplicantListModal";
-import { fetchPostById } from "../api/posts"; // axios 요청 함수 불러오기
+import { fetchPostById } from "../api/posts";
 import postData from "../mock/postData.json";
 
 function StudyDetailPageMy() {
@@ -13,21 +13,6 @@ function StudyDetailPageMy() {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
-
-  //API
-  // useEffect(() => {
-  //   const loadPost = async () => {
-  //     try {
-  //       const data = await fetchPostById(id);
-  //       setPost(data);
-  //     } catch (error) {
-  //       console.error("게시글 불러오기 실패:", error);
-  //     }
-  //   };
-  //   loadPost();
-  // }, [id]);
-
-  // if (!post) return <div>게시물을 찾을 수 없습니다.</div>;
 
   useEffect(() => {
     const findPost = postData.find(post => post.id === Number(id));
@@ -70,22 +55,21 @@ function StudyDetailPageMy() {
 
         <div className={styles.divider}></div>
 
-        <div className={styles.section}>
-          <div>
+        {/* ✅ 수정된 info 블록 */}
+        <div className={styles.infoBox}>
+          <div className={styles.infoItem}>
             <div className={styles.label}>모집 인원</div>
             <div className={styles.value}>최소 {post.maxPeople}명</div>
           </div>
-          <div>
+          <div className={styles.infoItem}>
             <div className={styles.label}>모집 기간</div>
             <div className={styles.value}>{post.deadline}</div>
           </div>
-          <div>
+          <div className={styles.infoItem}>
             <div className={styles.label}>진행 방식</div>
-            <div className={styles.value}>
-              {post.method} / 주 {post.frequency}회
-            </div>
+            <div className={styles.value}>{post.method} / 주 {post.frequency}회</div>
           </div>
-          <div>
+          <div className={styles.infoItem}>
             <div className={styles.label}>지역</div>
             <div className={styles.value}>{post.location}</div>
           </div>
@@ -98,7 +82,6 @@ function StudyDetailPageMy() {
 
       {isEditOpen && <StudyEditPage setIsOpen={setIsEditOpen} />}
       {isModalOpen && <ApplicantListModal onClose={() => setIsModalOpen(false)} postId={post.id} />}
-
     </>
   );
 }

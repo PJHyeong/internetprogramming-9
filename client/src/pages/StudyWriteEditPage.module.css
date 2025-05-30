@@ -27,58 +27,77 @@
 
 h2 {
   text-align: center;
-  color: #2e2eaa;
-  font-size: 20px;
+  color: #3a3e98;
+  font-size: 22px;
+  font-weight: bold;
 }
 
 .row {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
 .rowGroup {
   display: flex;
-  gap: 20px;
+  gap: 32px;
 }
 
 .rowGroup .row {
   flex: 1;
 }
 
+.labelTitle {
+  font-weight: 600;
+  font-size: 14px;
+  color: #3a3e98;
+  margin-bottom: 4px;
+}
+
 input[type="text"],
 input[type="date"],
 input[type="number"],
 textarea {
-  padding: 10px;
-  border: 1px solid #bbb;
+  padding: 10px 12px;
+  border: 1px solid #3a3e98; 
   border-radius: 8px;
   font-size: 14px;
   resize: none;
+  transition: border 0.2s;
 }
 
 textarea {
-  min-height: 100px;
+  min-height: 270px; 
 }
 
 .checkboxGroup {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   align-items: center;
+  margin: 12px 0;
 }
 
+.checkboxGroup label {
+  color: #3a3e98;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+
 .submit {
-  background-color: #2e2eaa;
+  background-color: #3a3e98;
   color: white;
   font-size: 16px;
   border: none;
-  padding: 12px;
+  padding: 12px 24px;
   border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .submit:hover {
-  background-color: #1f1f8c;
+  background-color: #2b2d85;
 }
 
 .tagList {
@@ -90,7 +109,7 @@ textarea {
 
 .tag {
   background-color: #dce2ff;
-  color: #2e2eaa;
+  color: #3a3e98;
   padding: 5px 10px;
   border-radius: 20px;
   font-size: 13px;
@@ -99,7 +118,7 @@ textarea {
 input:focus,
 textarea:focus {
   outline: none;
-  border: 1.5px solid #2e2eaa;
+  border: 1.5px solid #3a3e98;
   background-color: #f7f9ff;
 }
 
@@ -116,5 +135,5 @@ textarea:focus {
 }
 
 .closeButton:hover {
-  color: #2e2eaa;
+  color: #3a3e98;
 }
