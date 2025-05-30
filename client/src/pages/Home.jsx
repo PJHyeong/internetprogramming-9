@@ -7,6 +7,7 @@ import loginUser from '../mock/loginUser.json';
 import Search from "../components/Search";
 import { fetchPosts } from "../api/postAPI";
 import { useNavigate } from "react-router-dom";
+import StudyWritePage from "./StudyWritePage";
 
 
 function Home() {
@@ -14,6 +15,7 @@ function Home() {
   const [keyword, setKeyword] = useState(""); //검색어
   const [toggle, setToggle] = useState("ALL"); //ALL, MY 토글 버튼
   const [sortValue, setSortValue] = useState("title"); // 드롭다운 value
+  const [isOpen, setIsOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -60,7 +62,8 @@ function Home() {
             </select>
           </div>
           <Search keyword={keyword} setKeyword={setKeyword}/>
-          <button className="write-button">게시물 작성</button>
+          <button className="write-button" onClick={() => {setIsOpen(true)}}>게시물 작성</button>
+          {isOpen && <StudyWritePage setIsOpen={setIsOpen} />}
         </div>
         <div className="card-container">
           {

@@ -5,7 +5,7 @@ import LoginModal from "../modal/LoginModal";
 import SignUpModal from "../modal/signUpModal";
 import { logoutAPI } from "../api/loginAPI";
 
-function Header() {
+function Header({onClick}) {
   const [loginModal, setLoginModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
   const [user, setUser] = useState(null);
@@ -38,7 +38,7 @@ function Header() {
 };
 
   return (
-    <div className="background">
+    <div className="background" onClick={onClick}>
       <div className="container">
         <div className="title">MJU StudyHub</div>
         <div className="button-container">

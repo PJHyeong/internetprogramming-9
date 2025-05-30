@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./StudyDetailPage.module.css";
 import Header from "../components/Header";
 import StudyEditPage from "./StudyEditPage";
@@ -12,6 +12,7 @@ function StudyDetailPageMy() {
   const [post, setPost] = useState([]);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   //API
   // useEffect(() => {
@@ -44,7 +45,7 @@ function StudyDetailPageMy() {
 
   return (
     <>
-      <Header />
+      <Header onClick={() => {navigate('/')}}/>
       <div className={styles.container}>
         <div className={styles.status}>{isRecruiting ? "모집중" : "모집 마감"}</div>
         <h2 className={styles.title}>{post.title}</h2>

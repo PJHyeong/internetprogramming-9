@@ -7,19 +7,19 @@ import StudyDetailPageMy from "./pages/StudyDetailPageMy";
 
 function Main() {
 
-  // //자동 로그인 시도
-  // useEffect(() => {
-  //   const tryAutoLogin = async () => {
-  //     const autoLogin = localStorage.getItem("autoLogin");
-  //     if (autoLogin === "true") {
-  //       const success = await refreshTokenAPI();
-  //       if (!success) {
-  //         localStorage.removeItem("accessToken");
-  //         localStorage.removeItem("autoLogin");
-  //       }}
-  //   };
-  //   tryAutoLogin();
-  // }, []);
+  //자동 로그인 시도
+  useEffect(() => {
+    const tryAutoLogin = async () => {
+      const autoLogin = localStorage.getItem("autoLogin");
+      if (autoLogin === "true") {
+        const success = await refreshTokenAPI();
+        if (!success) {
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("autoLogin");
+        }}
+    };
+    tryAutoLogin();
+  }, []);
 
   return (
     <BrowserRouter>

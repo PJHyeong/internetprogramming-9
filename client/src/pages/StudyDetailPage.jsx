@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchPostById } from "../api/posts";
 import styles from "./StudyDetailPage.module.css";
 import Header from "../components/Header";
@@ -8,6 +8,7 @@ import postData from "../mock/postData.json";
 function StudyDetailPage() {
   const { id } = useParams();
   const [post, setPost] = useState([]);
+  const navigate = useNavigate();
 
   //API
   // useEffect(() => {
@@ -35,7 +36,7 @@ function StudyDetailPage() {
 
   return (
     <>
-      <Header />
+      <Header onClick={() => {navigate('/')}}/>
       <div className={styles.container}>
         <div className={styles.status}>
           {isRecruiting ? "모집중" : "모집 마감"}
