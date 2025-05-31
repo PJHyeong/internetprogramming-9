@@ -7,7 +7,6 @@ function StudyWritePage({ setIsOpen }) {
   const [form, setForm] = useState({
     title: "",
     content: "",
-    description: "",
     deadline: "",
     maxPeople: "",
     frequency: "",
@@ -73,7 +72,7 @@ function StudyWritePage({ setIsOpen }) {
           <div className={styles.rowGroup}>
             <div className={styles.row}>
               <label className={styles.labelTitle}>상세 내용</label>
-              <textarea name="description" value={form.description} onChange={handleChange} required />
+              <textarea name="content" value={form.content} onChange={handleChange} required />
             </div>
             <div className={styles.row}>
               <label className={styles.labelTitle}>주간 모임 횟수</label>
