@@ -50,19 +50,84 @@ function ApplicantListModal({ onClose, postId }) {
         {applicants.length === 0 ? (
           <div style={{ padding: "12px" }}>신청자가 없습니다.</div>
         ) : (
-          applicants.map(({ id, name, userid, email }) => (
-            <div key={id} className={styles.row}>
-              <div className={styles.cell}>{name}</div>
-              <div className={styles.cell}>{userid}</div>
-              <div className={styles.cell}>{email}</div>
-              <button onClick={() => handleAccept(id)} className={styles.ok}>O</button>
-              <button onClick={() => handleReject(id)} className={styles.no}>X</button>
-            </div>
+          applicants.map(({ id, name, studentNumber, email }) =>{
+            return(
+              <div key={id} className={styles.row}>
+                <div className={styles.cell}>{name}</div>
+                <div className={styles.cell}>{studentNumber}</div>
+                <div className={styles.cell}>{email}</div>
+                <button onClick={() => handleAccept(id)} className={styles.ok}>O</button>
+                <button onClick={() => handleReject(id)} className={styles.no}>X</button>
+              </div>
+            )
+          }
           ))
-        )}
+        }
       </div>
     </div>
   );
 }
 
 export default ApplicantListModal;
+
+//mock data 기반
+
+// // ApplicantListModal.jsx
+// import React, { useState, useEffect } from "react";
+// import styles from "./ApplicantListModal.module.css";
+// import applicantData from "../mock/applicantData.json";
+
+// function ApplicantListModal({ onClose, postId }) {
+//   const [applicants, setApplicants] = useState([]);
+
+//   useEffect(() => {
+//   console.log("전달된 postId:", postId, typeof postId);
+//   console.log("전체 mock 신청자:", applicantData);
+//   const filtered = applicantData.filter((a) => {
+//     console.log("비교 중:", a.postId, Number(postId));
+//     return a.postId == Number(postId);
+//   });
+//   console.log("필터링 결과:", filtered);
+//   setApplicants(filtered);
+// }, [postId]);
+
+
+//   // 수락 처리 (mock 기반이라 알림만)
+//   const handleAccept = (id) => {
+//     alert(`ID ${id} 신청 수락됨`);
+//   };
+
+//   // 거절 처리 (UI에서만 삭제)
+//   const handleReject = (id) => {
+//     setApplicants(applicants.filter((a) => a.id !== id));
+//   };
+
+//   return (
+//     <div className={styles.overlay}>
+//       <div className={styles.modal}>
+//         <div className={styles.header}>
+//           <h3>신청자 리스트</h3>
+//           <button onClick={onClose} className={styles.close}>✕</button>
+//         </div>
+//         {applicants.length === 0 ? (
+//           <div style={{ padding: "12px" }}>신청자가 없습니다.</div>
+//         ) : (
+//           applicants.map(({ id, name, studentNumber, email }) =>{
+//             return(
+//               <div key={id} className={styles.row}>
+//                 <div className={styles.cell}>{name}</div>
+//                 <div className={styles.cell}>{studentNumber}</div>
+//                 <div className={styles.cell}>{email}</div>
+//                 <button onClick={() => handleAccept(id)} className={styles.ok}>O</button>
+//                 <button onClick={() => handleReject(id)} className={styles.no}>X</button>
+//               </div>
+//             )
+//           }
+//           ))
+//         }
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default ApplicantListModal;
