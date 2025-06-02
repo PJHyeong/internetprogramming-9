@@ -3,7 +3,7 @@ import styles from "./StudyWriteEditPage.module.css";
 import loginUser from "../mock/loginUser.json";
 import axiosInstance from "../api/axiosInstance";
 
-function StudyWritePage({ setIsOpen }) {
+function StudyWritePage({ setIsOpen, user }) {
   const [form, setForm] = useState({
     title: "",
     content: "",
@@ -13,8 +13,8 @@ function StudyWritePage({ setIsOpen }) {
     method: { offline: false, online: false },
     tags: [],
     location: "",
-    userId: loginUser.userId,
-    name: loginUser.name
+    userId: user.userId,
+    name: user.name
   });
   const [tagInput, setTagInput] = useState("");
 

@@ -63,7 +63,7 @@ function Home({user}) {
           </div>
           <Search keyword={keyword} setKeyword={setKeyword}/>
           <button className="write-button" onClick={() => {setIsOpen(true)}}>게시물 작성</button>
-          {isOpen && <StudyWritePage setIsOpen={setIsOpen} />}
+          {isOpen && <StudyWritePage setIsOpen={setIsOpen} user={user}/>}
         </div>
         <div className="card-container">
           {
