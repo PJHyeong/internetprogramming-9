@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import StudyDetailPage from "./pages/StudyDetailPage";
 import StudyDetailPageMy from "./pages/StudyDetailPageMy";
 
-function Main({ onLogin }) {
+function Main({ onLogin, user }) {
 
   //자동 로그인 시도
   useEffect(() => {
@@ -26,7 +26,7 @@ function Main({ onLogin }) {
 
   return (
     <Routes>
-      <Route path="/" element={<Home />}/>
+      <Route path="/" element={<Home user={user}/>}/>
       <Route path="/post/:id" element={<StudyDetailPage />}/>
       <Route path="/post/:id/my" element={<StudyDetailPageMy />}/>
     </Routes>

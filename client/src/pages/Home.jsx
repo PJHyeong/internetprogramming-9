@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Card from "../components/Card";
-import Header from "../components/Header";
 import postData from '../mock/postData.json';
 import loginUser from '../mock/loginUser.json';
 import Search from "../components/Search";
@@ -10,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import StudyWritePage from "./StudyWritePage";
 
 
-function Home() {
+function Home({user}) {
   const [posts, setPosts] = useState([]);
   const [keyword, setKeyword] = useState(""); //검색어
   const [toggle, setToggle] = useState("ALL"); //ALL, MY 토글 버튼
@@ -19,11 +18,13 @@ function Home() {
 
   const navigate = useNavigate();
 
+  const userId = user?.userId;
+
   //게시글 목록 불러오기 API
   useEffect(() => {
     const getData = async () => {
       try{
-        const response = await fetchPosts(toggle, sortValue, keyword);
+        const response = await fetchPosts(toggle, sortValue, keyword, userId);
         setPosts(response.data);
         console.log("데이터: ",response.data);
       } catch(err){
@@ -50,7 +51,6 @@ function Home() {
 
   return (
     <>
-      <Header />
       <div className="container">
         <div className="top-container">
           <div className="button-container">
