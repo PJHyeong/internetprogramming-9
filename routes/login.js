@@ -82,7 +82,7 @@ router.post('/login', async (req, res) => {
 
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      sameSite: 'strict',
+      sameSite: 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7일
     });
 
@@ -103,7 +103,7 @@ router.post('/login', async (req, res) => {
 });
 
 // 토큰 재발급
-router.post('/refresh', (req, res) => {
+router.post('/refresh', async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
 
   if (!refreshToken) return res.status(401).json({ message: 'Refresh Token 없음' });
@@ -112,11 +112,25 @@ router.post('/refresh', (req, res) => {
     const payload = jwt.verify(refreshToken, process.env.JWT_SECRET);
     const accessToken = jwt.sign({ id: payload.id }, process.env.JWT_SECRET, { expiresIn: '15m' });
 
-    res.status(200).json({ token: accessToken });
+    //사용자 정보 DB에서 조회
+    const result = await pool.query(
+      'SELECT id, name, "userId", email, role FROM users WHERE id = $1',
+      [payload.id]
+    );
+
+    const user = result.rows[0];
+
+    if (!user) return res.status(404).json({ message: '사용자 정보를 찾을 수 없습니다.' });
+
+    //token + user 동시 응답
+    res.status(200).json({ token: accessToken, user });
+
   } catch (err) {
+    console.error("토큰 재발급 중 오류:", err);
     return res.status(403).json({ message: 'Refresh Token 만료 또는 유효하지 않음' });
   }
 });
+
 
 // Refresh Token 제거
 router.post('/logout', (req, res) => {
