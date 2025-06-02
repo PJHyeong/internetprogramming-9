@@ -16,19 +16,13 @@ function StudyDetailPageMy() {
 
   //API
   useEffect(() => {
-    const loadPost = async () => {
-      try {
-        const data = await fetchPostById(id);
-        setPost(data);
-      } catch (error) {
-        console.error("게시글 불러오기 실패:", error);
-      }
-    };
-    loadPost();
+    fetchPostById(id)
+      .then(setPost)
+      .catch((err) => console.log("게시글 불러오기 오류", err));
   }, [id]);
-
   if (!post) return <div>게시물을 찾을 수 없습니다.</div>;
-
+  
+  //mockData 기반 게시글 아이디 찾기
   // useEffect(() => {
   //   const findPost = postData.find(post => post.id === Number(id));
   //   setPost(findPost);
@@ -45,7 +39,6 @@ function StudyDetailPageMy() {
 
   return (
     <>
-      <Header onClick={() => {navigate('/')}}/>
       <div className={styles.container}>
         <div className={styles.status}>{isRecruiting ? "모집중" : "모집 마감"}</div>
         <h2 className={styles.title}>{post.title}</h2>
@@ -94,7 +87,7 @@ function StudyDetailPageMy() {
         </div>
       </div>
 
-      {isEditOpen && <StudyEditPage setIsOpen={setIsEditOpen} />}
+      {isEditOpen && <StudyEditPage setIsOpen={setIsEditOpen} post={post}/>}
       {isModalOpen && <ApplicantListModal onClose={() => setIsModalOpen(false)} postId={post.id} />}
     </>
   );

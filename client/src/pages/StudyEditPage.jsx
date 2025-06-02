@@ -17,9 +17,14 @@ function StudyEditPage({ post, setIsOpen }) {
 
   useEffect(() => {
     if (post) {
-      setForm(post); // post prop을 받아서 초기값으로 세팅
-    }
-  }, [post]);
+      setForm(prev => ({
+      ...prev,
+      ...post,
+      method: post.method || { offline: false, online: false },
+      tags: post.tags || [],
+    }));
+  }
+}, [post]);
 
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
