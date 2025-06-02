@@ -26,7 +26,7 @@ function Home({user}) {
       try{
         const response = await fetchPosts(toggle, sortValue, keyword, userId);
         setPosts(response);
-        console.log("데이터: ",response.data);
+        console.log("데이터: ",response);
       } catch(err){
         console.log("fetching data error: ", err);
       }
