@@ -29,9 +29,9 @@ export const refreshTokenAPI = async (form) => {
       {withCredentials: true}
     ); //accessToken 만료시, 토큰 재발급 요청
 
-    if (res.data.token) {
+    if (res.data.token && res.data.user) {
       localStorage.setItem("accessToken", res.data.token);
-      return true;
+      return {success: true, user: res.data.user};
     }
   } catch (err) {
     console.error("토큰 재발급 실패", err);

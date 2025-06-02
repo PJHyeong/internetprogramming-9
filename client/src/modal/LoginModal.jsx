@@ -2,11 +2,14 @@ import React, {useState} from "react";
 import login from './LoginModal.module.css';
 import close from "../assets/close.svg";
 import { loginAPI } from "../api/loginAPI";
+import { useNavigate } from "react-router-dom";
 
 function LoginModal({onClose, onLogin}){
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [autoLogin, setAutoLogin] = useState(false);
+
+  const navigate = useNavigate();
 
   //서버에 로그인 요청
   const handleSubmit = async () => {
@@ -15,8 +18,10 @@ function LoginModal({onClose, onLogin}){
       if(autoLogin) localStorage.setItem("autoLogin", "true");
       else localStorage.removeItem("autoLogin");
       alert("로그인 되었습니다.");
+      console.log(localStorage.getItem("autoLogin"));
       onLogin(login.user);
       onClose();
+      navigate('/');
     }else {
       alert("로그인에 실패 하였습니다. 다시 한 번 확인해 주세요.");
     }

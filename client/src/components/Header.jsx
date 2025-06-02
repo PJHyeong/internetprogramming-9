@@ -5,28 +5,23 @@ import LoginModal from "../modal/LoginModal";
 import SignUpModal from "../modal/signUpModal";
 import { logoutAPI } from "../api/loginAPI";
 
-function Header({onClick}) {
+function Header({ user, isLoggedIn, onLogin, onLogout, onClick }) {
   const [loginModal, setLoginModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
-  const [user, setUser] = useState(null);
-  const [isLoggedIn,setIsLoggedIn] = useState(false);
 
   const closeLoginModal = () => setLoginModal(false);
   const closeSignUpModal = () => setSignUpModal(false);
 
   const handleLogin = (user) => {
-    setIsLoggedIn(true);
+    onLogin(user);
     console.log("로그인 성공:", user);
-    setUser(user);
   }
 
  const handleLogout = async () => {
   try {
     const result = await logoutAPI();
     if (result.success) {
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("autoLogin");
-      setIsLoggedIn(false);
+      onLogout();
       alert("로그아웃 되었습니다.");
     } else {
       alert(result.error || "로그아웃에 실패했습니다.");

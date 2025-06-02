@@ -5,14 +5,17 @@ import Home from "./pages/Home";
 import StudyDetailPage from "./pages/StudyDetailPage";
 import StudyDetailPageMy from "./pages/StudyDetailPageMy";
 
-function Main() {
+function Main({ onLogin }) {
 
   //자동 로그인 시도
   useEffect(() => {
+    console.log("main useEffect 실행.");
     const tryAutoLogin = async () => {
       const autoLogin = localStorage.getItem("autoLogin");
+      console.log("자동 로그인 여부 :",autoLogin);
       if (autoLogin === "true") {
         const success = await refreshTokenAPI();
+        onLogin(success.user);
         if (!success) {
           localStorage.removeItem("accessToken");
           localStorage.removeItem("autoLogin");
@@ -22,13 +25,11 @@ function Main() {
   }, []);
 
   return (
-    <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home />}/>
       <Route path="/post/:id" element={<StudyDetailPage />}/>
       <Route path="/post/:id/my" element={<StudyDetailPageMy />}/>
     </Routes>
-    </BrowserRouter>
   )
 }
 
