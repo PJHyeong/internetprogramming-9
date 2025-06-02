@@ -25,14 +25,14 @@ function Home({user}) {
     const getData = async () => {
       try{
         const response = await fetchPosts(toggle, sortValue, keyword, userId);
-        setPosts(response.data);
+        setPosts(response);
         console.log("데이터: ",response.data);
       } catch(err){
         console.log("fetching data error: ", err);
       }
     }
     getData();
-  }, [toggle, sortValue, keyword])
+  }, [toggle, sortValue, keyword, userId])
 
 
   // // 게시물 토글 버튼, 검색창 필터 구현. 

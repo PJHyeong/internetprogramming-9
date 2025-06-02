@@ -5,20 +5,38 @@ import styles from "./StudyDetailPage.module.css";
 import Header from "../components/Header";
 import postData from "../mock/postData.json";
 
-function StudyDetailPage() {
+function StudyDetailPage({user}) {
   const { id } = useParams();
   const [post, setPost] = useState(null);
-  const navigate = useNavigate();
 
-  //API
+  //게시글 조회
   useEffect(() => {
     fetchPostById(id)
       .then(setPost)
-      .catch(console.error);
+      .catch((err) => console.log("게시글 불러오기 오류", err));
   }, [id]);
-
   if (!post) return <div>불러오는 중...</div>;
 
+  const handleSubmit = async () => {
+    if(!user?.id){
+      alert("로그인을 진행해 주세요.");
+      return;
+    }
+    try{
+      const response = await applyAPI(post.id, user.userId);
+      if(response.success){
+        alert("신청 완료되었습니다.")
+      } else {
+        alert(response.message || "오류가 발생하였습니다.");
+      }
+    }catch(err){
+      console.log("신청 오류", err);
+      alert("오류 발생.");
+
+    }
+  }
+
+  //mockData 기반 게시글 아이디 찾기
   // useEffect(() => {
   //   const findPost = postData.find((post) => post.id === Number(id));
   //   setPost(findPost);
@@ -35,7 +53,6 @@ function StudyDetailPage() {
 
   return (
     <>
-      <Header onClick={() => navigate("/")} />
       <div className={styles.container}>
         <div className={styles.status}>
           {isRecruiting ? "모집중" : "모집 마감"}
@@ -77,7 +94,7 @@ function StudyDetailPage() {
         </div>
 
         <div className={styles.buttonBox}>
-          <button className={styles.button}>신청하기</button>
+          <button className={styles.button} onClick={handleSubmit}>신청하기</button>
         </div>
       </div>
     </>

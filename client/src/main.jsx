@@ -27,8 +27,8 @@ function Main({ onLogin, user }) {
   return (
     <Routes>
       <Route path="/" element={<Home user={user}/>}/>
-      <Route path="/post/:id" element={<StudyDetailPage />}/>
-      <Route path="/post/:id/my" element={<StudyDetailPageMy />}/>
+      <Route path="/post/:id" element={<StudyDetailPage user={user}/>}/>
+      <Route path="/post/:id/my" element={<StudyDetailPageMy user={user}/>}/>
     </Routes>
   )
 }
