@@ -20,20 +20,27 @@ function Home({user}) {
 
   const userId = user?.userId;
 
-  
-// 게시물 목록 불러오기
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
-const fetchPosts = async () => {
+  const getData = async () => {
   try {
+<<<<<<< HEAD
     const res = await axiosInstance.get("/api/posts");
     setPosts(Array.isArray(res.data) ? res.data : []);
+=======
+    const res = await fetchPosts(toggle, sortValue, keyword, userId);
+    setPosts(res.posts || []);
+    console.log("서버 응답 데이터:", res); 
+>>>>>>> 199457abd6277d8a1f1bf8a5e405c30687e01294
   } catch (err) {
-    setPosts([]); // 에러 발생 시에도 빈 배열로
+    console.error("불러오기 실패:", err);
+    setPosts([]);
   }
-}
+};
+
+  // 게시물 목록 불러오기
+    useEffect(() => {
+      getData();
+    }, [toggle, sortValue, keyword, userId]);
+
   // // 게시물 토글 버튼, 검색창 필터 구현. 
   // const filteredPosts = postData
   // .filter(post => (toggle === "ALL") || (loginUser.userId === post.userId))
