@@ -12,8 +12,13 @@
 
 .search-box input {
   background-color: transparent;
-  border: none;
-  outline: none;
+  border: none !important;
+  outline: none !important;
+}
+.search-box input:focus {
+  background-color: transparent;
+  border: none !important;
+  outline: none !important;
 }
 .search-box input::placeholder {
   color: #A9ABD2;
