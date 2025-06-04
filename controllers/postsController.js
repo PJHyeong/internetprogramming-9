@@ -27,7 +27,7 @@ exports.getAllPosts = async (req, res) => {
     // badgeClass 추가
     const result = rows.map(r=>({
       ...r,
-      tags: r.tags.map(withBadge)
+      tags: (r.tags || []).map(withBadge)
     }));
     res.json(result);
   } catch (err) {
