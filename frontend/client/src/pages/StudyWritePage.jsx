@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./StudyWriteEditPage.module.css";
 import axiosInstance from "../api/axiosInstance";
 
-function StudyWritePage({ setIsOpen, user }) {
+function StudyWritePage({ setIsOpen, user, onPostCreated }) {
   const [form, setForm] = useState({
     title: "",
     content: "",
@@ -56,6 +56,11 @@ function StudyWritePage({ setIsOpen, user }) {
       await axiosInstance.post("/api/posts", sendData);
       alert("모집글이 성공적으로 등록되었습니다!");
       setIsOpen(false); 
+
+      if(onPostCreated){
+        onPostCreated();
+      }
+
     } catch (error) {
       console.error("작성 실패:", error);
       alert("작성 실패: " + (error.response?.data?.message || "서버 오류"));
