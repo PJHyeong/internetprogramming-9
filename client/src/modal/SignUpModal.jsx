@@ -123,6 +123,7 @@ function SignUpModal({onClose}){
             학번
             <input type="text" 
               name="studentNumber"
+              className="studentNumber"
               placeholder="ex) 60xxxxx"
               value={studentNumber}
               onChange={handleFormChange}/>
