@@ -29,8 +29,7 @@ function Home({user}) {
 const fetchPosts = async () => {
   try {
     const res = await axiosInstance.get("/api/posts");
-    // 응답이 배열인지 확인 후 setPosts
-    setPosts(Array.isArray(res.data.posts) ? res.data.posts : []);
+    setPosts(Array.isArray(res.data) ? res.data : []);
   } catch (err) {
     setPosts([]); // 에러 발생 시에도 빈 배열로
   }
