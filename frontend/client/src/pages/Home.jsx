@@ -22,14 +22,9 @@ function Home({user}) {
 
   const getData = async () => {
   try {
-<<<<<<< HEAD
-    const res = await axiosInstance.get("/api/posts");
-    setPosts(Array.isArray(res.data) ? res.data : []);
-=======
     const res = await fetchPosts(toggle, sortValue, keyword, userId);
-    setPosts(res.posts || []);
+    setPosts(Array.isArray(res) ? res : []);
     console.log("서버 응답 데이터:", res); 
->>>>>>> 199457abd6277d8a1f1bf8a5e405c30687e01294
   } catch (err) {
     console.error("불러오기 실패:", err);
     setPosts([]);

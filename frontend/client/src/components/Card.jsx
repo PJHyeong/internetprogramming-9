@@ -25,11 +25,7 @@ function Card({post, onClick}) {
         </div>
       </div>
       <div className={style.title}>{post.title}</div>
-      <div className={style.tag}>
-        {(post.tags || []).map((tag, idx) => (
-          <span key={idx}>#{typeof tag === "string" ? tag : tag.name || ""} </span>
-        ))}
-      </div>
+      <div className={style.tag}>{post.tags.map((tag) => (`#${tag} `))}</div>
       <div className={style['bottom-container']}>
         <div className={style.name}>{post.name}</div>
         <div className={style.detail}>자세히 보기<img src={detail}/></div>

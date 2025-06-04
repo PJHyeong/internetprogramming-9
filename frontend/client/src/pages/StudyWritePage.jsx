@@ -55,7 +55,6 @@ function StudyWritePage({ setIsOpen, user, onPostCreated }) {
     try {
       await axiosInstance.post("/api/posts", sendData);
       alert("모집글이 성공적으로 등록되었습니다!");
-      
       setIsOpen(false); 
 
       if(onPostCreated){

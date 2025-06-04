@@ -26,7 +26,7 @@ exports.getAllPosts = async (req, res) => {
     `);
     const result = rows.map(r => ({
       ...r,
-      tags: r.tags.map(withBadge)
+      tags: Array.isArray(r.tags) ? r.tags.map(withBadge) : []
     }));
     res.json(result);
   } catch (err) {
@@ -50,7 +50,7 @@ exports.getPostById = async (req, res) => {
     `, [req.params.id]);
     if (!rows.length) return res.status(404).json({ error: '글이 없습니다' });
     const post = rows[0];
-    post.tags = post.tags.map(withBadge);
+    post.tags = Array.isArray(post.tags) ? post.tags.map(withBadge) : [];
     res.json(post);
   } catch (err) {
     console.error(err);
@@ -127,7 +127,7 @@ exports.createPost = async (req, res) => {
       GROUP BY p.id
     `, [post.id]);
     const created = full[0];
-    created.tags = created.tags.map(withBadge);
+    created.tags = Array.isArray(created.tags) ? created.tags.map(withBadge) : [];
     res.status(201).json(created);
 
   } catch (err) {
@@ -216,7 +216,7 @@ exports.updatePost = async (req, res) => {
       GROUP BY p.id
     `, [id]);
     const updated = full[0];
-    updated.tags = updated.tags.map(withBadge);
+    updated.tags = Array.isArray(updated.tags) ? updated.tags.map(withBadge) : [];
     res.json(updated);
 
   } catch (err) {
