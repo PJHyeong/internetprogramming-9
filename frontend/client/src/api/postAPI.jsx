@@ -2,7 +2,7 @@ import axiosInstance from "./axiosInstance";
 
 //필터 기능
 export const fetchPosts = async (toggle, sortValue, keyword, userId) => {
-  const response = await axiosInstance.get("",{
+  const response = await axiosInstance.get("/api/posts",{
     params: {
       user: toggle, //ALL MY 토글 버튼
       sort: sortValue, //dropdown
