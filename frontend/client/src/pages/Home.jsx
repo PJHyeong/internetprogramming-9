@@ -21,20 +21,20 @@ function Home({user}) {
   const userId = user?.userId;
 
   
-// 게시물 목록을 API로부터 가져오는 코드
+// 게시물 목록 불러오기
   useEffect(() => {
-  const fetchPosts = async () => {
-    try {
-      const res = await axiosInstance.get("/api/posts");
-      // 응답이 배열인지 확인 후 setPosts
-      setPosts(Array.isArray(res.data.posts) ? res.data.posts : []);
-    } catch (err) {
-      setPosts([]); // 에러 발생 시에도 빈 배열로
-    }
-  };
-  fetchPosts();
-}, []);
+    fetchPosts();
+  }, []);
 
+const fetchPosts = async () => {
+  try {
+    const res = await axiosInstance.get("/api/posts");
+    // 응답이 배열인지 확인 후 setPosts
+    setPosts(Array.isArray(res.data.posts) ? res.data.posts : []);
+  } catch (err) {
+    setPosts([]); // 에러 발생 시에도 빈 배열로
+  }
+}
   // // 게시물 토글 버튼, 검색창 필터 구현. 
   // const filteredPosts = postData
   // .filter(post => (toggle === "ALL") || (loginUser.userId === post.userId))
@@ -63,7 +63,7 @@ function Home({user}) {
           </div>
           <Search keyword={keyword} setKeyword={setKeyword}/>
           <button className="write-button" onClick={() => {setIsOpen(true)}}>게시물 작성</button>
-          {isOpen && <StudyWritePage setIsOpen={setIsOpen} user={user}/>}
+          {isOpen && <StudyWritePage setIsOpen={setIsOpen} user={user} onPostCreated={fetchPosts}/>}
         </div>
         <div className="card-container">
           {
