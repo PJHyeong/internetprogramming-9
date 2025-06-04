@@ -1,0 +1,157 @@
+/* StudyDetailPage.module.css */
+
+.wrapper {
+  background-color: #f4f4fd;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 16px;
+  box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+  font-size: 32px;
+  color: #2e2eaa;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.container {
+  background-color: white;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.status {
+  font-size: 12px;
+  background-color: #a2a5d7;
+  color: white;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  text-align: center;
+  min-width: 50px;
+  max-width: 50px;
+}
+
+.postTitle {
+  font-size: 14px;
+  font-weight: bold;
+  color: #2e2eaa;
+}
+
+.metaWrap {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.writer {
+  font-size: 20px;
+  font-weight: bold;
+  color: #3a3e98;
+  margin-right: 15px;
+}
+
+.tags {
+  font-size: 14px;
+  color: #a9abd2;
+}
+
+.description {
+  font-size: 14px;
+  color: #444;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px 0;
+}
+
+.infoBox {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: nowrap; 
+  box-sizing: border-box;
+}
+
+.label {
+  background-color: #3a3e98;
+  color: white;
+  padding-top: 3px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 30px;
+  white-space: nowrap;
+  flex-shrink: 0;   
+}
+
+.value {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  padding-top: 3px;
+  padding-left: 3px;
+}
+
+
+.buttonBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.button {
+  background-color: #3A3E98;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  padding-top: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  
+}
+
+.button:hover {
+  background-color: #1e1e88;
+}

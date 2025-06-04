@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "title": "React 스터디 모집",
+    "name": "홍길동",
+    "userId": "gildong",
+    "deadline": "2025-05-30",
+    "location": "경기도 용인시",
+    "tags": ["React", "Frontend"],
+    "content": "안녕하세요! 프론트엔드 개발 역량을 함께 키워갈 스터디원을 모집합니다. 함께 html부터 React까지 공부하고, 프로젝트도 도전해보며 성장하고 싶은 분들의 많은 참여를 기다려요!",
+    "maxPeople": 5,
+    "method": "offline",
+    "frequency": 2
+  },
+  {
+    "id": 2,
+    "title": "가나다라마바사",
+    "name": "홍길동",
+    "userId": "gildong",
+    "deadline": "2025-06-05",
+    "location": "경기도 용인시",
+    "tags": ["NLP", "AI"],
+    "content": "안녕하세요! 프론트엔드 개발 역량을 함께 키워갈 스터디원을 모집합니다. 함께 html부터 React까지 공부하고, 프로젝트도 도전해보며 성장하고 싶은 분들의 많은 참여를 기다려요!",
+    "maxPeople": 5,
+    "method": "온라인",
+    "frequency": 2
+  },
+  {
+    "id": 3,
+    "title": "나다라마바사",
+    "name": "김민지",
+    "userId": "minji",
+    "deadline": "2025-04-20",
+    "location": "경기도 용인시",
+    "tags": ["React", "Frontend"],
+    "content": "안녕하세요! 프론트엔드 개발 역량을 함께 키워갈 스터디원을 모집합니다. 함께 html부터 React까지 공부하고, 프로젝트도 도전해보며 성장하고 싶은 분들의 많은 참여를 기다려요!",
+    "maxPeople": 5,
+    "method": "온라인",
+    "frequency": 2
+  },
+  {
+    "id": 4,
+    "title": "AI 팀원 모집",
+    "name": "김민지",
+    "userId": "minji",
+    "deadline": "2025-06-03",
+    "location": "경기도 용인시",
+    "tags": ["NLP", "AI"],
+    "content": "함께 스터디 하실 분 모집합니다!",
+    "maxPeople": 5,
+    "method": "온라인",
+    "frequency": 2
+  },
+  {
+    "id": 5,
+    "title": "AI 팀원 모집",
+    "name": "김민지",
+    "userId": "minji",
+    "deadline": "2025-06-01",
+    "location": "경기도 용인시",
+    "tags": ["NLP", "AI"],
+    "content": "안녕하세요! 프론트엔드 개발 역량을 함께 키워갈 스터디원을 모집합니다. 함께 html부터 React까지 공부하고, 프로젝트도 도전해보며 성장하고 싶은 분들의 많은 참여를 기다려요!",
+    "maxPeople": 5,
+    "method": "온라인",
+    "frequency": 2
+  },
+  {
+    "id": 6,
+    "title": "AI 팀원 모집",
+    "name": "김민지",
+    "userId": "minji",
+    "deadline": "2025-06-10",
+    "location": "경기도 용인시",
+    "tags": ["NLP", "AI"],
+    "content": "안녕하세요! 프론트엔드 개발 역량을 함께 키워갈 스터디원을 모집합니다. 함께 html부터 React까지 공부하고, 프로젝트도 도전해보며 성장하고 싶은 분들의 많은 참여를 기다려요!",
+    "maxPeople": 5,
+    "method": "온라인",
+    "frequency": 2
+  }
+]

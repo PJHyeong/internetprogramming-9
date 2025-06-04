@@ -1,0 +1,139 @@
+/*  StudyWriteEditPage.module.css - 작성/수정 모달 공통 스타일 */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  width: 700px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+h2 {
+  text-align: center;
+  color: #3a3e98;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.rowGroup {
+  display: flex;
+  gap: 32px;
+}
+
+.rowGroup .row {
+  flex: 1;
+}
+
+.labelTitle {
+  font-weight: 600;
+  font-size: 14px;
+  color: #3a3e98;
+  margin-bottom: 4px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+textarea {
+  padding: 10px 12px;
+  border: 1px solid #3a3e98; 
+  border-radius: 8px;
+  font-size: 14px;
+  resize: none;
+  transition: border 0.2s;
+}
+
+textarea {
+  min-height: 270px; 
+}
+
+.checkboxGroup {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.checkboxGroup label {
+  color: #3a3e98;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+
+.submit {
+  background-color: #3a3e98;
+  color: white;
+  font-size: 16px;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit:hover {
+  background-color: #2b2d85;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.tag {
+  background-color: #dce2ff;
+  color: #3a3e98;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 1.5px solid #3a3e98;
+  background-color: #f7f9ff;
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: #3a3e98;
+}
