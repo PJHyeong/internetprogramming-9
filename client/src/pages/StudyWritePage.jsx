@@ -13,8 +13,8 @@ function StudyWritePage({ setIsOpen, user }) {
     method: { offline: false, online: false },
     tags: [],
     location: "",
-    userId: user.userId,
-    name: user.name
+    userId: user?.userId || "",
+    name: user?.name || ""
   });
   const [tagInput, setTagInput] = useState("");
 
