@@ -36,19 +36,19 @@ function Home({user}) {
       getData();
     }, [toggle, sortValue, keyword, userId]);
 
-  // // 게시물 토글 버튼, 검색창 필터 구현. 
-  // const filteredPosts = postData
-  // .filter(post => (toggle === "ALL") || (loginUser.userId === post.userId))
-  // .filter(post => post.title.toLowerCase().includes(keyword.toLowerCase()));
+  // 게시물 토글 버튼, 검색창 필터 구현. 
+  const filteredPosts = posts
+  .filter(post => (toggle === "ALL") || (user.userId === post.userId))
+  .filter(post => post.title.toLowerCase().includes(keyword.toLowerCase()));
 
-  // //정렬 기능 구현.
-  // const sortedPosts = [...filteredPosts].sort((a,b) => {
-  //   if(sortValue === 'title'){
-  //     return a.title.localeCompare(b.title);
-  //   } else if(sortValue === 'day'){
-  //     return new Date(b.deadline) - new Date(a.deadline);
-  //   }
-  // })
+  //정렬 기능 구현.
+  const sortedPosts = [...filteredPosts].sort((a,b) => {
+    if(sortValue === 'title'){
+      return a.title.localeCompare(b.title);
+    } else if(sortValue === 'day'){
+      return new Date(b.deadline) - new Date(a.deadline);
+    }
+  })
 
   return (
     <>
@@ -68,7 +68,7 @@ function Home({user}) {
         </div>
         <div className="card-container">
           {
-            posts.map((post) => ( //mock data-> sortedPosts.map, API -> posts.map
+            sortedPosts.map((post) => ( //mock data-> sortedPosts.map, API -> posts.map
               <Card key={post.id} post={post} onClick={()=>{toggle === "ALL" ? navigate(`/post/${post.id}`) : navigate(`/post/${post.id}/my`)}}/>
             ))
           }
